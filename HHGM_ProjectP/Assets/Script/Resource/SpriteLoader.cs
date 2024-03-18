@@ -1,12 +1,10 @@
-using ProjectP_Define;
+using ProjectP.Define;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace ProejctP_Resource
+namespace ProejctP.Resource
 {
     /// <summary>
     /// 게임에 사용되는 모든 아틀라스를 관리하는 클래스

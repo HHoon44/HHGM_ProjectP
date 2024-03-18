@@ -1,9 +1,6 @@
-using ProjectP_Define;
-using ProjectP_UI;
+using ProjectP.Define;
+using ProjectP.UI;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks.Sources;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 namespace ProjectP

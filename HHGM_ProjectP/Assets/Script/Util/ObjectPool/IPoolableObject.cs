@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProjectP_Util
+namespace ProjectP.Util
 {
     /// <summary>
     /// 오브젝트가 재사용 될 수 있음을 나타내는 인터페이스
