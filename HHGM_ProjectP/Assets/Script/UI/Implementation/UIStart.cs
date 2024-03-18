@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectP_UI
+namespace ProjectP.UI
 {
     /// <summary>
     /// 게임 시작 화면에 대한 UI들을 관리하는 클래스
