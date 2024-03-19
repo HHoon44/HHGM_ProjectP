@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerCont : MonoBehaviour
@@ -11,16 +12,16 @@ public class PlayerCont : MonoBehaviour
     public Rigidbody hips;
     public bool isGrounded;
 
-    void Start()
+    private void Start()
     {
         hips = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            if(Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 hips.AddForce(hips.transform.forward * speed * 1.5f);
             }
@@ -28,21 +29,21 @@ public class PlayerCont : MonoBehaviour
             {
                 hips.AddForce(hips.transform.forward * speed);
             }
-            
+
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             hips.AddForce(-hips.transform.right * strafeSpeed);
         }
-        if(Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             hips.AddForce(-hips.transform.forward * speed);
         }
-        if(Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            hips.AddForce(hips.transform.right  * strafeSpeed);
+            hips.AddForce(hips.transform.right * strafeSpeed);
         }
-        if(Input.GetAxis("Jump") > 0)
+        else if (Input.GetAxis("Jump") > 0)
         {
             if (isGrounded)
             {
@@ -50,7 +51,7 @@ public class PlayerCont : MonoBehaviour
                 isGrounded = false;
             }
         }
-        
+
     }
 
 }
