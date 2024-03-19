@@ -7,14 +7,13 @@ public class TestGround : MonoBehaviour
     public int count;
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.tag == "Player")
+        if (other.tag == "Player")
         {
             Debug.Log("플레이어 추락");
 
             count++;
         }
-
     }
 }
