@@ -48,7 +48,7 @@ namespace ProjectP.Object
                 }
                 else if (isLeftorRight == 1)
                 {
-                    anim.SetBool("isLeftHandUp", false);
+                    anim.SetBool("isRightHandUp", false);
                 }
 
                 if (grabbedObj != null)

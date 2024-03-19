@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerCont : MonoBehaviour
 {
+    public Animator animator;
+
     public float speed;
     public float strafeSpeed;
     public float jumpForce;
@@ -23,27 +25,40 @@ public class PlayerCont : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
+                animator.SetBool("isWalk", true);
+                animator.SetBool("isRun", true);
                 hips.AddForce(hips.transform.forward * speed * 1.5f);
             }
             else
             {
+                animator.SetBool("isRun", false);
+                animator.SetBool("isWalk", true);
                 hips.AddForce(hips.transform.forward * speed);
             }
 
         }
-        else if (Input.GetKey(KeyCode.A))
+        else
+        {
+            animator.SetBool("isWalk", false);
+            animator.SetBool("isRun", false);
+        }
+        
+        
+
+
+        if (Input.GetKey(KeyCode.A))
         {
             hips.AddForce(-hips.transform.right * strafeSpeed);
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             hips.AddForce(-hips.transform.forward * speed);
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             hips.AddForce(hips.transform.right * strafeSpeed);
         }
-        else if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxis("Jump") > 0)
         {
             if (isGrounded)
             {
