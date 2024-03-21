@@ -1,5 +1,8 @@
+using ProjectP.Object;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TestGrab : MonoBehaviour
@@ -9,6 +12,10 @@ public class TestGrab : MonoBehaviour
     public int isLeftOrRight;               // 0 왼손 1 오른손
     public bool alreadyGrabbing = false;
 
+    [SerializeField]
+    private GameObject checkObj;
+
+    [SerializeField]
     private GameObject grabbedObj;          // 잡은 물건
 
     private void Awake()
@@ -32,17 +39,27 @@ public class TestGrab : MonoBehaviour
                 anim.SetBool("isRightHandUp", true);
             }
 
-            if (grabbedObj != null)
+            if (checkObj != null && grabbedObj == null)
             {
-                var fj = grabbedObj.AddComponent<FixedJoint>();
+                var fj = checkObj.AddComponent<FixedJoint>();
                 fj.connectedBody = rigid;
-                fj.breakForce = 9001;
+                fj.breakForce = 15000;
+                fj.enableCollision = true;
+
+                grabbedObj = checkObj;
             }
         }
 
         // 잡기 종료
         if (Input.GetMouseButtonUp(isLeftOrRight))
         {
+            if (grabbedObj != null)
+            {
+                // 잡은 물건을 제거하는 작업
+                Destroy(grabbedObj.GetComponent<FixedJoint>());
+                grabbedObj = null;
+            }
+
             if (isLeftOrRight == 0)
             {
                 // 왼손
@@ -53,14 +70,6 @@ public class TestGrab : MonoBehaviour
                 // 오른손
                 anim.SetBool("isRightHandUp", false);
             }
-
-            if (grabbedObj != null)
-            {
-                // 잡은 물건을 제거하는 작업
-                Destroy(grabbedObj.GetComponent<FixedJoint>());
-            }
-
-            grabbedObj = null;
         }
     }
 
@@ -68,13 +77,12 @@ public class TestGrab : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Item"))
         {
-            grabbedObj = other.gameObject;
+            checkObj = other.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        grabbedObj = null;
+        checkObj = null;
     }
-
 }
