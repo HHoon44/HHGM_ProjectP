@@ -8,10 +8,9 @@ public class TestPlayerController : MonoBehaviour
     public float strafeSpeed;
     public float jumpForce;
     public bool isGround;
-    public bool isLive = true;
     public Animator anim;
-    public Rigidbody hip;
 
+    public Rigidbody hip;
 
     private void FixedUpdate()
     {
@@ -58,7 +57,7 @@ public class TestPlayerController : MonoBehaviour
 
             hip.AddForce(-hip.transform.forward * speed);
         }
-        else if (!Input.GetKey(KeyCode.W))
+        else if(!Input.GetKey(KeyCode.W))
         {
             anim.SetBool("isWalk", false);
         }
