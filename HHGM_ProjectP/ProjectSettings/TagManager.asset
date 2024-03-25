@@ -17,8 +17,13 @@ TagManager:
   - noselfcollsion
   - 
   - NoSelfCollision
+<<<<<<< HEAD
   - Enemy
   - Player
+=======
+  - Nophysics
+  - 
+>>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
   - 
   - 
   - 
