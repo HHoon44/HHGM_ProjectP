@@ -6311,7 +6311,11 @@ Transform:
 --- !u!1 &709979971
 =======
 --- !u!1 &727002076
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6336,7 +6340,11 @@ GameObject:
   m_Layer: 9
   m_Name: BteamScoreArea
   m_TagString: Untagged
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6347,7 +6355,11 @@ Rigidbody:
 =======
 --- !u!114 &727002077
 MonoBehaviour:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6376,7 +6388,11 @@ ConfigurableJoint:
   UIscoreB: {fileID: 1345779340}
 --- !u!65 &727002078
 BoxCollider:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6481,7 +6497,11 @@ SphereCollider:
   m_GameObject: {fileID: 709979971}
 =======
   m_GameObject: {fileID: 727002076}
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -6544,7 +6564,11 @@ MeshFilter:
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &727002079
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6573,7 +6597,11 @@ Transform:
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727834403
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6598,7 +6626,11 @@ GameObject:
   m_Layer: 5
   m_Name: AteamScoreText
   m_TagString: Untagged
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6609,7 +6641,11 @@ Transform:
 =======
 --- !u!224 &727834404
 RectTransform:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6643,7 +6679,11 @@ ConfigurableJoint:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727834405
 MonoBehaviour:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6801,7 +6841,11 @@ MeshRenderer:
   m_Text: 00
 --- !u!222 &727834406
 CanvasRenderer:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6854,7 +6898,11 @@ MeshFilter:
 =======
   m_GameObject: {fileID: 727834403}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &740764763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7430,7 +7478,11 @@ Transform:
 --- !u!1 &797590338
 =======
 --- !u!1 &807678456
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7449,7 +7501,11 @@ GameObject:
   - component: {fileID: 807678458}
   m_Layer: 5
   m_Name: Ateam
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7461,7 +7517,11 @@ Transform:
 =======
 --- !u!224 &807678457
 RectTransform:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7511,7 +7571,11 @@ RectTransform:
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &807678458
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7701,7 +7765,11 @@ MeshRenderer:
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &807678459
 CanvasRenderer:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8253,7 +8321,11 @@ MonoBehaviour:
 =======
   m_GameObject: {fileID: 807678456}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &921218912
 GameObject:
   m_ObjectHideFlags: 0
@@ -8904,7 +8976,11 @@ MonoBehaviour:
 --- !u!1 &1026867260
 =======
 --- !u!1 &1011352209
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8929,7 +9005,11 @@ GameObject:
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8940,7 +9020,11 @@ Rigidbody:
 =======
 --- !u!224 &1011352210
 RectTransform:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9185,7 +9269,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011352209}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &1036119679
 GameObject:
   m_ObjectHideFlags: 0
@@ -9288,7 +9376,11 @@ Transform:
 --- !u!1 &1100812754
 =======
 --- !u!1 &1132180850
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9730,7 +9822,11 @@ GameObject:
   - component: {fileID: 1132180852}
   m_Layer: 5
   m_Name: Bteam
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9742,7 +9838,11 @@ Transform:
 =======
 --- !u!224 &1132180851
 RectTransform:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9788,7 +9888,11 @@ BoxCollider:
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1132180852
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9877,7 +9981,11 @@ MeshRenderer:
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1132180853
 CanvasRenderer:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10142,7 +10250,11 @@ Transform:
 =======
   m_GameObject: {fileID: 1132180850}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &1226772215
 GameObject:
   m_ObjectHideFlags: 0
@@ -10400,7 +10512,11 @@ MonoBehaviour:
 --- !u!1 &1277762289
 =======
 --- !u!1 &1275391587
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10425,7 +10541,11 @@ GameObject:
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10436,7 +10556,11 @@ Rigidbody:
 =======
 --- !u!224 &1275391588
 RectTransform:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10680,7 +10804,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275391587}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &1290262228
 GameObject:
   m_ObjectHideFlags: 0
@@ -10783,7 +10911,11 @@ Transform:
 --- !u!1 &1333819329
 =======
 --- !u!1 &1345779338
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10808,7 +10940,11 @@ GameObject:
   m_Layer: 5
   m_Name: BteamScoreText
   m_TagString: Untagged
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10819,7 +10955,11 @@ Rigidbody:
 =======
 --- !u!224 &1345779339
 RectTransform:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11067,7 +11207,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345779338}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &1372003801
 GameObject:
   m_ObjectHideFlags: 0
@@ -16077,7 +16221,11 @@ Transform:
 --- !u!1 &1868478252
 =======
 --- !u!1 &2012475454
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16103,7 +16251,11 @@ GameObject:
   m_Layer: 5
   m_Name: ScoreUI
   m_TagString: Untagged
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16114,7 +16266,11 @@ Transform:
 =======
 --- !u!114 &2012475455
 MonoBehaviour:
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -17845,7 +18001,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
 >>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
+=======
+>>>>>>> main
+>>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
 --- !u!1 &2046911869
 GameObject:
   m_ObjectHideFlags: 0
