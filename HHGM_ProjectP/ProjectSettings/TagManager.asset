@@ -17,8 +17,13 @@ TagManager:
   - noselfcollsion
   - 
   - NoSelfCollision
+<<<<<<< HEAD
   - Enemy
   - Player
+=======
+  - Nophysics
+  - 
+>>>>>>> main
   - 
   - 
   - 
