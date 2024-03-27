@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Test
-  - Item
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -13,25 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - noselfcollsion
+  - 
+  - 
+  - 
   - 
   - NoSelfCollision
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - Enemy
-  - Player
-=======
-  - Nophysics
-  - 
-<<<<<<< HEAD
->>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
-=======
->>>>>>> main
->>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
-=======
-  - 
-  - 
->>>>>>> parent of 1101f76 (조형훈 : 적 떨궈서 파괴시키는거 구현중)
   - 
   - 
   - 

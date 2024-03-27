@@ -15,25 +15,13 @@ PhysicsManager:
   m_QueriesHitBackfaces: 0
   m_QueriesHitTriggers: 1
   m_EnableAdaptiveForce: 0
-  m_ClothInterCollisionDistance: 0
-  m_ClothInterCollisionStiffness: 0
+  m_ClothInterCollisionDistance: 0.1
+  m_ClothInterCollisionStiffness: 0.2
   m_ContactsGeneration: 1
-<<<<<<< HEAD
-<<<<<<< HEAD
-  m_LayerCollisionMatrix: ffffffffffffffffffffffffffffffffffffffffffffffffbffffffffffffffffffefffffffdfffffffbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-=======
-  m_LayerCollisionMatrix: ffffffffffffffffffffffffffffffffffffffffffffffffbffdfffffffffffffffcffffbffcffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-<<<<<<< HEAD
->>>>>>> 58ff389 (아이템 태그가 팀 영역에 닿을시 점수가 올라감)
-=======
->>>>>>> main
->>>>>>> db78e515f9b7f309edeabd2ce7094fa20516a734
-=======
-  m_LayerCollisionMatrix: ffffffffffffffffffffffffffffffffffffffffffffffffbffffffffffffffffffeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
->>>>>>> parent of 1101f76 (조형훈 : 적 떨궈서 파괴시키는거 구현중)
+  m_LayerCollisionMatrix: fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
   m_AutoSimulation: 1
   m_AutoSyncTransforms: 0
-  m_ReuseCollisionCallbacks: 1
+  m_ReuseCollisionCallbacks: 0
   m_ClothInterCollisionSettingsToggle: 0
   m_ClothGravity: {x: 0, y: -9.81, z: 0}
   m_ContactPairsMode: 0
@@ -47,4 +35,4 @@ PhysicsManager:
   m_EnableUnifiedHeightmaps: 1
   m_ImprovedPatchFriction: 0
   m_SolverType: 0
-  m_DefaultMaxAngularSpeed: 7
+  m_DefaultMaxAngularSpeed: 50
