@@ -83,5 +83,13 @@ public class PlayerController : MonoBehaviour
                 isGround = true;
             }
         }
+
+        if(Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0)) {
+            anim.SetBool("isDropkick", true);
+            Invoke("EndDropkick", 1);
+        }
+    }
+    void EndDropkick() {
+        anim.SetBool("isDropkick", false);
     }
 }
