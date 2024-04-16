@@ -6,7 +6,7 @@ public class Grab : MonoBehaviour
 {
     public Animator anim;
     public Rigidbody rigid;                 // 물건을 잡을 손
-    public int isLeftOrRight;               // 0 왼손 1 오른손
+    public int isLeftOrRight;               // 0 놓기 1 잡기
     public bool alreadyGrabbing = false;
 
     private GameObject grabbedObj;          // 잡은 물건
@@ -18,19 +18,18 @@ public class Grab : MonoBehaviour
 
     private void Update()
     {
-        // 잡기 시작
+        // 우클릭시 잡기 시작
         if (Input.GetMouseButtonDown(isLeftOrRight))
         {
+
+            Debug.Log("click check");
             if (isLeftOrRight == 0)
             {
-                // 왼손
-                anim.SetBool("isLeftHandUp", true);
+                // 양손잡기
+
+                anim.SetBool("isGrab", true);
             }
-            else if (isLeftOrRight == 1)
-            {
-                // 오른손
-                anim.SetBool("isRightHandUp", true);
-            }
+            
 
             if (grabbedObj != null)
             {
@@ -43,16 +42,12 @@ public class Grab : MonoBehaviour
         // 잡기 종료
         if (Input.GetMouseButtonUp(isLeftOrRight))
         {
-            if (isLeftOrRight == 0)
+            if (isLeftOrRight == 0 )
             {
-                // 왼손
-                anim.SetBool("isLeftHandUp", false);
+                // 잡기 놓기
+                anim.SetBool("isGrab", false);
             }
-            else if (isLeftOrRight == 1)
-            {
-                // 오른손
-                anim.SetBool("isRightHandUp", false);
-            }
+           
 
             if (grabbedObj != null)
             {
