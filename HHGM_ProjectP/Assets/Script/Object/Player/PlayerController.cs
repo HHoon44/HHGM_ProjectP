@@ -17,19 +17,23 @@ public class PlayerController : MonoBehaviour
         // Forward Move
         if (Input.GetKey(KeyCode.W))
         {
+
+            
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 anim.SetBool("isWalk", true);
                 anim.SetBool("isRun", true);
 
-                hip.AddForce(hip.transform.forward * speed * 1.5f);
+                hip.AddForce(Vector3.forward * speed * 1.5f);
+                
             }
             else
             {
                 anim.SetBool("isWalk", true);
                 anim.SetBool("isRun", false);
 
-                hip.AddForce(hip.transform.forward * speed);
+                hip.AddForce(Vector3.forward * speed);
+                Debug.Log("w_check");
             }
         }
         else
@@ -41,9 +45,11 @@ public class PlayerController : MonoBehaviour
         // Right Move
         if (Input.GetKey(KeyCode.A))
         {
+            
             anim.SetBool("isSideLeft", true);
 
-            hip.AddForce(-hip.transform.right * strafeSpeed);
+            hip.AddForce(-Vector3.right * strafeSpeed);
+            Debug.Log("a_check");
         }
         else
         {
@@ -53,9 +59,11 @@ public class PlayerController : MonoBehaviour
         // Back Move
         if (Input.GetKey(KeyCode.S))
         {
+            
             anim.SetBool("isWalk", true);
 
-            hip.AddForce(-hip.transform.forward * speed);
+            hip.AddForce(-Vector3.forward * speed);
+            Debug.Log("s_check");
         }
         else if (!Input.GetKey(KeyCode.W))
         {
@@ -65,9 +73,11 @@ public class PlayerController : MonoBehaviour
         // Left Move
         if (Input.GetKey(KeyCode.D))
         {
+            
             anim.SetBool("isSideRight", true);
 
-            hip.AddForce(hip.transform.right * strafeSpeed);
+            hip.AddForce(Vector3.right * strafeSpeed);
+            Debug.Log("d_check");
         }
         else
         {
@@ -75,16 +85,14 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            if (!isGround)
-            {
-                hip.AddForce(new Vector3(0, jumpForce, 0));
-                isGround = true;
-            }
+            hip.AddForce(new Vector3(0, jumpForce, 0));
+            isGround = false;
+            Debug.Log("Jump");
         }
 
-       
+
     }
     
 }

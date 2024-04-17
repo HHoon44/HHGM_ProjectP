@@ -22,7 +22,7 @@ public class CopyMotion : MonoBehaviour
         }
         else
         {
-            cj.targetRotation = Quaternion.Inverse(targetLimb.rotation);
+            cj.targetRotation = targetLimb.rotation;
         }
     }
 }
