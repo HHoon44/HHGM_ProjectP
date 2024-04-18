@@ -265,20 +265,20 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
-    m_StateMachine: {fileID: -7608897048429210939}
+    m_Name: grab
+    m_StateMachine: {fileID: 7389002601355700319}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
-    m_DefaultWeight: 0
+    m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: grab
-    m_StateMachine: {fileID: 7389002601355700319}
+    m_Name: Base Layer
+    m_StateMachine: {fileID: -7608897048429210939}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -482,10 +482,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4943994602680254082}
-    m_Position: {x: 30, y: 220, z: 0}
+    m_Position: {x: 250, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3277879627544814960}
-    m_Position: {x: 30, y: 390, z: 0}
+    m_Position: {x: 530, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
