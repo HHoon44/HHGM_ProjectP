@@ -8,7 +8,8 @@ public class Grab : MonoBehaviour
     public Rigidbody rigid;                 // 물건을 잡을 손
     public int isLeftOrRight;               // 0 놓기 1 잡기
     public bool alreadyGrabbing = false;
-
+    public bool Rightpunch = false;
+    public bool Leftpunch = false;
     private GameObject grabbedObj;          // 잡은 물건
 
     private void Awake()
@@ -29,6 +30,25 @@ public class Grab : MonoBehaviour
 
                 anim.SetBool("isGrab", true);
             }
+            if (isLeftOrRight == 1)
+            {
+                Debug.Log("Punch Check!");
+                // 펀치 날리기
+                if (Rightpunch == false)
+                {
+                    Leftpunch = false;
+                    anim.SetBool("isRightPunch", true);
+                    Rightpunch = true;
+                }
+               
+                if(Rightpunch == true)
+                {
+                    Rightpunch = false;
+                    anim.SetBool("isleftPunch", true);
+                    Leftpunch = true;
+                }
+
+            }
             
 
             if (grabbedObj != null)
@@ -47,7 +67,13 @@ public class Grab : MonoBehaviour
                 // 잡기 놓기
                 anim.SetBool("isGrab", false);
             }
-           
+            if (isLeftOrRight == 1)
+            {
+                // 펀치 종료
+                anim.SetBool("isRightPunch", false);
+                anim.SetBool("isLetPunch", false);
+            }
+
 
             if (grabbedObj != null)
             {
