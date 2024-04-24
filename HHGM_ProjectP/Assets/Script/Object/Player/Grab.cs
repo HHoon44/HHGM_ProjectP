@@ -8,8 +8,8 @@ public class Grab : MonoBehaviour
     public Rigidbody rigid;                 // 물건을 잡을 손
     public int isLeftOrRight;               // 0 놓기 1 잡기
     public bool alreadyGrabbing = false;
-    public bool Rightpunch = false;
-    public bool Leftpunch = false;
+    public int PunchCount = 0;
+  
     private GameObject grabbedObj;          // 잡은 물건
 
     private void Awake()
@@ -19,36 +19,18 @@ public class Grab : MonoBehaviour
 
     private void Update()
     {
-        // 우클릭시 잡기 시작
+        // 왼클릭시 잡기 시작
         if (Input.GetMouseButtonDown(isLeftOrRight))
         {
 
-            Debug.Log("click check");
+
             if (isLeftOrRight == 0)
             {
                 // 양손잡기
 
                 anim.SetBool("isGrab", true);
             }
-            if (isLeftOrRight == 1)
-            {
-                Debug.Log("Punch Check!");
-                // 펀치 날리기
-                if (Rightpunch == false)
-                {
-                    Leftpunch = false;
-                    anim.SetBool("isRightPunch", true);
-                    Rightpunch = true;
-                }
-               
-                if(Rightpunch == true)
-                {
-                    Rightpunch = false;
-                    anim.SetBool("isleftPunch", true);
-                    Leftpunch = true;
-                }
-
-            }
+            
             
 
             if (grabbedObj != null)
@@ -57,6 +39,30 @@ public class Grab : MonoBehaviour
                 fj.connectedBody = rigid;
                 fj.breakForce = 9001;
             }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (PunchCount == 0)
+            {
+                // 오른손 펀치
+                anim.SetBool("isRightPunch", true);
+                anim.SetBool("isLeftPunch", false); // 왼손 펀치 애니메이션 비활성화
+                PunchCount = 1;
+            }
+            else if (PunchCount == 1)
+            {
+                // 왼손 펀치
+                anim.SetBool("isRightPunch", false); // 오른손 펀치 애니메이션 비활성화
+                anim.SetBool("isLeftPunch", true);
+                PunchCount = 0;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            // 펀치 종료
+            anim.SetBool("isRightPunch", false);
+            anim.SetBool("isLeftPunch", false);
         }
 
         // 잡기 종료
@@ -67,12 +73,7 @@ public class Grab : MonoBehaviour
                 // 잡기 놓기
                 anim.SetBool("isGrab", false);
             }
-            if (isLeftOrRight == 1)
-            {
-                // 펀치 종료
-                anim.SetBool("isRightPunch", false);
-                anim.SetBool("isLetPunch", false);
-            }
+            
 
 
             if (grabbedObj != null)

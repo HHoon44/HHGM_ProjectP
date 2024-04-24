@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isRun", false);
 
                 hip.AddForce(Vector3.forward * speed);
-                Debug.Log("w_check");
+               
             }
         }
         else
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isSideLeft", true);
 
             hip.AddForce(-Vector3.right * strafeSpeed);
-            Debug.Log("a_check");
+            
         }
         else
         {
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isWalk", true);
 
             hip.AddForce(-Vector3.forward * speed);
-            Debug.Log("s_check");
+            
         }
         else if (!Input.GetKey(KeyCode.W))
         {
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isSideRight", true);
 
             hip.AddForce(Vector3.right * strafeSpeed);
-            Debug.Log("d_check");
+           
         }
         else
         {
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             hip.AddForce(new Vector3(0, jumpForce, 0));
             isGround = false;
-            Debug.Log("Jump");
+            
         }
 
 
