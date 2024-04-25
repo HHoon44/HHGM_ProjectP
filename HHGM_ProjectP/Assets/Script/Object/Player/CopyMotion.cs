@@ -14,7 +14,7 @@ public class CopyMotion : MonoBehaviour
         cj = GetComponent<ConfigurableJoint>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!mirror)
         {

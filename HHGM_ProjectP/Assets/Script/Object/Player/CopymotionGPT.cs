@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
+
 
 public class CopymotionGPT : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class CopymotionGPT : MonoBehaviour
         cj = GetComponent<ConfigurableJoint>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         // 거울 모드가 아닌 경우
         if (!mirror)
