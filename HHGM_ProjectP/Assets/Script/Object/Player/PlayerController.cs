@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject[] weapons;
+    public bool[] hasWeapons;
     public float speed;
     public float strafeSpeed;
     public float jumpForce;
     public bool isGround;
     public Animator anim;
-
+    bool isJump;
     public Rigidbody hip;
+
+    GameObject nearObject;
 
     private void FixedUpdate()
     {
@@ -89,10 +93,25 @@ public class PlayerController : MonoBehaviour
         {
             hip.AddForce(new Vector3(0, jumpForce, 0));
             isGround = false;
+           
             
         }
 
 
+    }
+    void Interation()
+    {
+        if(!isGround)
+        {
+            if(nearObject.tag == "Weapon")
+            {
+                Item item = nearObject.GetComponent<Item>();
+                int weaponIndex = item.value;
+                hasWeapons[weaponIndex] = true;
+
+                Destroy(nearObject);
+            }
+        }
     }
     
 }
