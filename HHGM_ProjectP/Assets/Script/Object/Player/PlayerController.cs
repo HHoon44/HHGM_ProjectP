@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
            
             
         }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Interation();
+        }
 
 
     }
@@ -103,8 +107,10 @@ public class PlayerController : MonoBehaviour
     {
         if(!isGround)
         {
-            if(nearObject.tag == "Weapon")
+            Debug.Log("무기감지 전단계");
+            if (nearObject.tag == "Weapon")
             {
+                Debug.Log("무기감지");
                 Item item = nearObject.GetComponent<Item>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;

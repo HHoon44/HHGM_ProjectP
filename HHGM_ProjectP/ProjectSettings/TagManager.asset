@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Item
   - equippoint
+  - Weapon
+  - Punch
   layers:
   - Default
   - TransparentFX
