@@ -13,13 +13,19 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     bool isJump;
     public Rigidbody hip;
+    public bool faint = false;
+    public int nobanbok = 1;
+
+    public float HP = 100;
+
+    public ConfigurableJoint joint;
 
     GameObject nearObject;
 
     private void FixedUpdate()
     {
         // Forward Move
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && (faint == false))
         {
 
             
@@ -47,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Right Move
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && (faint == false))
         {
             
             anim.SetBool("isSideLeft", true);
@@ -61,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Back Move
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && (faint == false))
         {
             
             anim.SetBool("isWalk", true);
@@ -75,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Left Move
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && (faint == false))
         {
             
             anim.SetBool("isSideRight", true);
@@ -89,35 +95,90 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isGround && (faint == false) )
         {
             hip.AddForce(new Vector3(0, jumpForce, 0));
             isGround = false;
            
             
         }
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && (faint == false))
         {
             Interation();
         }
-
+        if (HP <= 0)
+        {
+            if(nobanbok == 1)
+            {
+                gijal();
+            }
+            
+        }
 
     }
     void Interation()
     {
-        if(!isGround)
+        if (nearObject != null) // nearObject가 null이 아닌 경우에만 실행
         {
-            Debug.Log("무기감지 전단계");
-            if (nearObject.tag == "Weapon")
+            if (!isGround)
             {
-                Debug.Log("무기감지");
-                Item item = nearObject.GetComponent<Item>();
-                int weaponIndex = item.value;
-                hasWeapons[weaponIndex] = true;
+                Debug.Log("무기감지 전단계");
+                if (nearObject.tag == "Weapon")
+                {
+                    Debug.Log("무기감지");
+                    Item item = nearObject.GetComponent<Item>();
+                    int weaponIndex = item.value;
+                    hasWeapons[weaponIndex] = true;
 
-                Destroy(nearObject);
+                    Destroy(nearObject);
+                }
             }
         }
+        else
+        {
+            Debug.Log("주변에 상호작용 가능한 오브젝트가 없습니다.");
+        }
     }
-    
+
+    private void gijal()
+    {
+        faint = true;
+
+        if(joint != null)
+        {
+            nobanbok = 0;
+            JointDrive drive = joint.angularYZDrive;
+
+            // 스프링 강도 조절
+            drive.positionSpring = 0;
+
+            // angularYZDrive 설정 적용
+            joint.angularYZDrive = drive;
+            Invoke("getup", 5f);
+        }
+    }
+
+    private void getup()
+    {
+        JointDrive drive = joint.angularYZDrive;
+
+        // 스프링 강도 조절
+        drive.positionSpring = 1000;
+
+        // angularYZDrive 설정 적용
+        joint.angularYZDrive = drive;
+
+        HP = 100;
+        nobanbok = 1;
+        faint = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Punch")
+        {
+            HP -= 25;
+        }
+    }
+
 }

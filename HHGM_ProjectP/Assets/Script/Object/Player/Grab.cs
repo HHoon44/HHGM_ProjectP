@@ -11,12 +11,27 @@ public class Grab : MonoBehaviour
     public int PunchCount = 0;
   
     private GameObject grabbedObj;          // 잡은 물건
+    private CapsuleCollider Rpunch;
+    private CapsuleCollider Lpunch;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
     }
 
+
+    public void Punching()
+    {
+        if(PunchCount == 0)
+        {
+
+        }
+        else if (PunchCount == 1)
+        {
+
+        }
+    }
+    
     private void Update()
     {
         // 왼클릭시 잡기 시작
@@ -48,6 +63,8 @@ public class Grab : MonoBehaviour
                 anim.SetBool("isRightPunch", true);
                 anim.SetBool("isLeftPunch", false); // 왼손 펀치 애니메이션 비활성화
                 PunchCount = 1;
+                Punching();
+
             }
             else if (PunchCount == 1)
             {
@@ -55,6 +72,7 @@ public class Grab : MonoBehaviour
                 anim.SetBool("isRightPunch", false); // 오른손 펀치 애니메이션 비활성화
                 anim.SetBool("isLeftPunch", true);
                 PunchCount = 0;
+                Punching();
             }
         }
 
