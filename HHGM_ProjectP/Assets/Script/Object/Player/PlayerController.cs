@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
 
         }
-        if (Input.GetKeyDown(KeyCode.E) )
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (attachedWeapon == null) // 무기가 장착되어 있지 않은 경우
             {
@@ -139,17 +139,16 @@ public class PlayerController : MonoBehaviour
             {
                 DetachWeapon();
             }
-
-
         }
+
         if (HP <= 0)
         {
             if (nobanbok == 1)
             {
                 gijal();
             }
-
         }
+
         if (attachedWeapon != null && attachedWeapon.gameObject.name == "Bomb" && Input.GetMouseButtonDown(1)) // 폭탄이 장착되어 있고 우클릭을 눌렀을 때
         {
             ThrowBomb();
@@ -178,6 +177,7 @@ public class PlayerController : MonoBehaviour
                  Debug.Log("주변에 상호작용 가능한 오브젝트가 없습니다.");
              }*/
     }
+
     void AttachWeapon(Transform weaponTransform)
     {
         // 무기의 Transform을 장착할 부위의 Transform에 할당합니다.
@@ -190,6 +190,14 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = player.forward;
         Quaternion rotation = Quaternion.LookRotation(direction);
         weaponTransform.rotation = rotation;
+
+        // Rigidbody 비활성화
+        Rigidbody weaponRb = weaponTransform.GetComponent<Rigidbody>();
+        if (weaponRb != null)
+        {
+            weaponRb.isKinematic = true;
+            weaponRb.detectCollisions = false;
+        }
 
         // 현재 장착된 무기를 저장합니다.
         attachedWeapon = weaponTransform;
@@ -215,15 +223,18 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void ThrowBomb()
     {
         // 폭탄을 생성하고 throwPoint 위치에 던집니다.
         GameObject bomb = Instantiate(attachedWeapon.gameObject, weaponSocket.position, Quaternion.identity);
         Rigidbody bombRb = bomb.GetComponent<Rigidbody>();
 
-        // 폭탄에 힘을 가해 던집니다.
+        // Rigidbody 활성화
         if (bombRb != null)
         {
+            bombRb.isKinematic = false;
+            bombRb.detectCollisions = true;
             bombRb.AddForce(player.forward * 10f, ForceMode.Impulse);
         }
 
@@ -235,45 +246,45 @@ public class PlayerController : MonoBehaviour
 
         DetachWeapon();
     }
+
     private void gijal()
+    {
+        faint = true;
+
+        if (joint != null)
         {
-            faint = true;
-
-            if (joint != null)
-            {
-                nobanbok = 0;
-                JointDrive drive = joint.angularYZDrive;
-
-                // 스프링 강도 조절
-                drive.positionSpring = 0;
-
-                // angularYZDrive 설정 적용
-                joint.angularYZDrive = drive;
-                Invoke("getup", 5f);
-            }
-        }
-
-        private void getup()
-        {
+            nobanbok = 0;
             JointDrive drive = joint.angularYZDrive;
 
             // 스프링 강도 조절
-            drive.positionSpring = 1000;
+            drive.positionSpring = 0;
 
             // angularYZDrive 설정 적용
             joint.angularYZDrive = drive;
-
-            HP = 100;
-            nobanbok = 1;
-            faint = false;
+            Invoke("getup", 5f);
         }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.tag == "Punch")
-            {
-                HP -= 25;
-            }
-        }
-
     }
+
+    private void getup()
+    {
+        JointDrive drive = joint.angularYZDrive;
+
+        // 스프링 강도 조절
+        drive.positionSpring = 1000;
+
+        // angularYZDrive 설정 적용
+        joint.angularYZDrive = drive;
+
+        HP = 100;
+        nobanbok = 1;
+        faint = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Punch")
+        {
+            HP -= 25;
+        }
+    }
+}
