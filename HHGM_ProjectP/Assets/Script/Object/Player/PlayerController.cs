@@ -32,15 +32,12 @@ public class PlayerController : MonoBehaviour
         // Forward Move
         if (Input.GetKey(KeyCode.W) && (faint == false))
         {
-
-
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 anim.SetBool("isWalk", true);
                 anim.SetBool("isRun", true);
 
                 hip.AddForce(Vector3.forward * speed * 1.5f);
-
             }
             else
             {
@@ -48,7 +45,6 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isRun", false);
 
                 hip.AddForce(Vector3.forward * speed);
-
             }
         }
         else
@@ -60,11 +56,8 @@ public class PlayerController : MonoBehaviour
         // Right Move
         if (Input.GetKey(KeyCode.A) && (faint == false))
         {
-
             anim.SetBool("isSideLeft", true);
-
             hip.AddForce(-Vector3.right * strafeSpeed);
-
         }
         else
         {
@@ -74,11 +67,8 @@ public class PlayerController : MonoBehaviour
         // Back Move
         if (Input.GetKey(KeyCode.S) && (faint == false))
         {
-
             anim.SetBool("isWalk", true);
-
             hip.AddForce(-Vector3.forward * speed);
-
         }
         else if (!Input.GetKey(KeyCode.W))
         {
@@ -88,25 +78,20 @@ public class PlayerController : MonoBehaviour
         // Left Move
         if (Input.GetKey(KeyCode.D) && (faint == false))
         {
-
             anim.SetBool("isSideRight", true);
-
             hip.AddForce(Vector3.right * strafeSpeed);
-
         }
         else
         {
             anim.SetBool("isSideRight", false);
         }
 
-
         if (Input.GetKeyDown(KeyCode.Space) && isGround && (faint == false))
         {
             hip.AddForce(new Vector3(0, jumpForce, 0));
             isGround = false;
-
-
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (attachedWeapon == null) // 무기가 장착되어 있지 않은 경우
@@ -149,33 +134,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (attachedWeapon != null && attachedWeapon.gameObject.name == "Boomerang" && Input.GetMouseButtonDown(1)) // 부메랑 공격
+        {
+            ThrowBoomerang();
+        }
+
         if (attachedWeapon != null && attachedWeapon.gameObject.name == "Bomb" && Input.GetMouseButtonDown(1)) // 폭탄이 장착되어 있고 우클릭을 눌렀을 때
         {
             ThrowBomb();
         }
-
-        /* void Interation()
-         {
-             if (nearObject != null) // nearObject가 null이 아닌 경우에만 실행
-             {
-                 if (!isGround)
-                 {
-                     Debug.Log("무기감지 전단계");
-                     if (nearObject.tag == "Weapon")
-                     {
-                         Debug.Log("무기감지");
-                         Item item = nearObject.GetComponent<Item>();
-                         int weaponIndex = item.value;
-                         hasWeapons[weaponIndex] = true;
-
-                         Destroy(nearObject);
-                     }
-                 }
-             }
-             else
-             {
-                 Debug.Log("주변에 상호작용 가능한 오브젝트가 없습니다.");
-             }*/
     }
 
     void AttachWeapon(Transform weaponTransform)
@@ -211,17 +178,39 @@ public class PlayerController : MonoBehaviour
             {
                 // 폭탄을 장착 해제하고 파괴합니다.
                 Destroy(attachedWeapon.gameObject);
-                attachedWeapon = null;
             }
             else
             {
                 // 다른 무기를 장착 해제합니다.
                 attachedWeapon.parent = null;
-                attachedWeapon.localPosition = Vector3.zero; // 무기가 떨어질 위치를 조정합니다.
-                attachedWeapon.gameObject.SetActive(true); // 무기를 활성화합니다.
-                attachedWeapon = null;
+
+                // 무기의 위치를 장착 위치의 바로 아래로 설정합니다.
+                attachedWeapon.position = weaponSocket.position - new Vector3(0, 0.5f, 0);
+
+                // Rigidbody 활성화
+                Rigidbody weaponRb = attachedWeapon.GetComponent<Rigidbody>();
+                if (weaponRb != null)
+                {
+                    weaponRb.isKinematic = false;
+                    weaponRb.detectCollisions = true;
+                }
             }
+
+            attachedWeapon = null;
         }
+    }
+
+    void ThrowBoomerang()
+    {
+        GameObject boomerang = Instantiate(attachedWeapon.gameObject, weaponSocket.position, Quaternion.identity);
+        Boomerang boomerangScript = boomerang.GetComponent<Boomerang>();
+
+        Vector3 targetPosition = player.position + player.forward * 10f; // 부메랑이 날아갈 목표 위치 설정
+        boomerangScript.Initialize(targetPosition, player);
+
+        // 현재 장착된 부메랑을 제거합니다.
+        Destroy(attachedWeapon.gameObject);
+        attachedWeapon = null;
     }
 
     void ThrowBomb()
