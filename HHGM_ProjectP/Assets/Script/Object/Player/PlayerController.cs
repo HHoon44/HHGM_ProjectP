@@ -86,10 +86,20 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isSideRight", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGround && (faint == false))
+        /*if (Input.GetKeyDown(KeyCode.Space) && isGround && (faint == false))
         {
             hip.AddForce(new Vector3(0, jumpForce, 0));
             isGround = false;
+        }*/
+        if(Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("isFilpkick", true);
+            hip.AddForce(Vector3.forward * speed * 5f);
+
+        }
+        else
+        {
+            anim.SetBool("isFilpkick", false);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
