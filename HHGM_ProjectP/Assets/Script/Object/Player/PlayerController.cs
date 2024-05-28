@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -86,12 +87,13 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isSideRight", false);
         }
 
-        /*if (Input.GetKeyDown(KeyCode.Space) && isGround && (faint == false))
+        if (Input.GetKeyDown(KeyCode.Space) && (faint == false) && isGround)
         {
             hip.AddForce(new Vector3(0, jumpForce, 0));
             isGround = false;
-        }*/
-        if(Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space))
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("isFilpkick", true);
             hip.AddForce(Vector3.forward * speed * 5f);
@@ -144,14 +146,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (attachedWeapon != null && attachedWeapon.gameObject.name == "Boomerang" && Input.GetMouseButtonDown(1)) // 부메랑 공격
-        {
-            ThrowBoomerang();
-        }
+       
 
         if (attachedWeapon != null && attachedWeapon.gameObject.name == "Bomb" && Input.GetMouseButtonDown(1)) // 폭탄이 장착되어 있고 우클릭을 눌렀을 때
         {
             ThrowBomb();
+        }
+        // 추가할 부분: "Dagger" 우클릭 감지 로직
+        if (attachedWeapon != null && attachedWeapon.gameObject.name == "Dagger" && Input.GetMouseButtonDown(1)) // 단검이 장착되어 있고 우클릭을 눌렀을 때
+        {
+            ThrowDagger();
         }
     }
 
@@ -178,6 +182,12 @@ public class PlayerController : MonoBehaviour
 
         // 현재 장착된 무기를 저장합니다.
         attachedWeapon = weaponTransform;
+
+        // 폭탄의 경우 4초 후에 자동으로 폭발하도록 설정
+        if (attachedWeapon.gameObject.name == "Bomb")
+        {
+            Invoke("AutoExplodeBomb", 4f);
+        }
     }
 
     void DetachWeapon()
@@ -210,18 +220,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ThrowBoomerang()
-    {
-        GameObject boomerang = Instantiate(attachedWeapon.gameObject, weaponSocket.position, Quaternion.identity);
-        Boomerang boomerangScript = boomerang.GetComponent<Boomerang>();
-
-        Vector3 targetPosition = player.position + player.forward * 10f; // 부메랑이 날아갈 목표 위치 설정
-        boomerangScript.Initialize(targetPosition, player);
-
-        // 현재 장착된 부메랑을 제거합니다.
-        Destroy(attachedWeapon.gameObject);
-        attachedWeapon = null;
-    }
+    
 
     void ThrowBomb()
     {
@@ -244,6 +243,33 @@ public class PlayerController : MonoBehaviour
         explosion.ExplodeAfterSeconds(3f);
 
         DetachWeapon();
+    }
+
+    void ThrowDagger()
+    {
+        GameObject dagger = Instantiate(attachedWeapon.gameObject, weaponSocket.position, Quaternion.identity);
+        Dagger daggerScript = dagger.GetComponent<Dagger>();
+
+        // 단검이 날아갈 방향은 플레이어의 앞 방향으로 설정합니다.
+        Vector3 targetDirection = player.forward;
+        daggerScript.Initialize(targetDirection);
+
+        // 현재 장착된 단검을 제거합니다.
+        Destroy(attachedWeapon.gameObject);
+        attachedWeapon = null;
+    }
+
+    // 추가할 메서드: AutoExplodeBomb
+    void AutoExplodeBomb()
+    {
+        if (attachedWeapon != null && attachedWeapon.gameObject.name == "Bomb")
+        {
+            BombExplosion explosion = attachedWeapon.gameObject.AddComponent<BombExplosion>();
+            explosion.explosionRadius = 5f;
+            explosion.explosionForce = 10f;
+            explosion.ExplodeAfterSeconds(0f); // 즉시 폭발
+            attachedWeapon = null;
+        }
     }
 
     private void gijal()

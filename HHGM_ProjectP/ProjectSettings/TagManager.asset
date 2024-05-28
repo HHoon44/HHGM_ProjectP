@@ -8,6 +8,7 @@ TagManager:
   - equippoint
   - Weapon
   - Punch
+  - Ground
   layers:
   - Default
   - TransparentFX

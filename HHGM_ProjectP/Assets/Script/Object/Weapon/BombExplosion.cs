@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BombExplosion : MonoBehaviour
 {
-    public float explosionRadius = 10f; // 폭발 반경
-    public float explosionForce = 20f; // 폭발로 인한 힘
+    public float explosionRadius = 20f; // 폭발 반경
+    public float explosionForce = 100f; // 폭발로 인한 힘
 
     public void ExplodeAfterSeconds(float seconds)
     {
@@ -23,6 +23,13 @@ public class BombExplosion : MonoBehaviour
             {
                 // 폭발로 인한 힘을 주어 오브젝트를 날립니다.
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
+
+            // 폭발 반경 내의 플레이어에게 데미지를 줍니다.
+            PlayerController playerController = col.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.HP -= 100;
             }
         }
 
