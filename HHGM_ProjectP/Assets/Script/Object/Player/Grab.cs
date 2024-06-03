@@ -10,8 +10,14 @@ public class Grab : MonoBehaviour
 
     private GameObject grabbedObj; // 잡은 물건
     private Transform grabbedObjOriginalParent; // 잡은 물건의 원래 부모를 기억하기 위한 변수
-    private Vector3 grabbedObjOriginalPosition; // 잡은 물건의 원래 위치를 기억하기 위한 변수
-    private Quaternion grabbedObjOriginalRotation; // 잡은 물건의 원래 회전을 기억하기 위한 변수
+    private Rigidbody grabbedObjRb; // 잡은 물건의 Rigidbody를 기억하기 위한 변수
+    private Collider grabbedObjCollider; // 잡은 물건의 Collider를 기억하기 위한 변수
+
+    public float grabRange = 2f; // 잡기 가능한 최대 거리
+    public LayerMask grabLayer; // 감지할 레이어
+    public Transform grabPoint; // 레이캐스트를 발사할 위치
+    public Transform holdPoint; // 물체를 잡을 위치
+    public Quaternion grabbedObjOriginalRotation;
 
     private void Update()
     {
@@ -24,23 +30,48 @@ public class Grab : MonoBehaviour
                 // 잡기 애니메이션 시작
                 anim.SetBool("isGrab", true);
 
-                if (grabbedObj != null)
+                if (grabbedObj == null)
                 {
-                    // 원래 부모를 저장하여 나중에 복구할 수 있도록 함
-                    grabbedObjOriginalParent = grabbedObj.transform.parent;
-                    // 원래 위치와 회전을 저장
-                    grabbedObjOriginalPosition = grabbedObj.transform.position;
-                    grabbedObjOriginalRotation = grabbedObj.transform.rotation;
-                    // 잡은 물건을 손의 자식으로 설정
-                    grabbedObj.transform.SetParent(this.transform);
-                    // 선택적으로 로컬 위치/회전을 초기화하여 손과 정렬
-                    grabbedObj.transform.localPosition = Vector3.zero;
-                    grabbedObj.transform.localRotation = Quaternion.identity;
-                    // 잡은 물건의 Rigidbody를 Kinematic으로 설정하여 물리적 충돌을 비활성화
-                    Rigidbody grabbedRb = grabbedObj.GetComponent<Rigidbody>();
-                    if (grabbedRb != null)
+                    RaycastHit hit;
+                    // 레이캐스트 디버깅 라인 그리기
+                    Debug.DrawRay(grabPoint.position, grabPoint.forward * grabRange, Color.red, 2f);
+
+                    if (Physics.Raycast(grabPoint.position, grabPoint.forward, out hit, grabRange, grabLayer))
                     {
-                        grabbedRb.isKinematic = true;
+                        Debug.Log("Raycast hit: " + hit.collider.name);
+                        if (hit.collider.CompareTag("Item"))
+                        {
+                            grabbedObj = hit.collider.gameObject;
+                            Debug.Log("Item detected: " + grabbedObj.name);
+                            // 원래 부모를 저장하여 나중에 복구할 수 있도록 함
+                            grabbedObjOriginalParent = grabbedObj.transform.parent;
+                            // 잡은 물건을 손의 자식으로 설정
+                            grabbedObj.transform.SetParent(holdPoint);
+                            // 선택적으로 로컬 위치/회전을 초기화하여 손과 정렬
+                            grabbedObj.transform.localPosition = Vector3.zero;
+                            grabbedObj.transform.localRotation = Quaternion.identity;
+                            // 잡은 물건의 Rigidbody와 Collider를 가져옴
+                            grabbedObjRb = grabbedObj.GetComponent<Rigidbody>();
+                            grabbedObjCollider = grabbedObj.GetComponent<Collider>();
+                            if (grabbedObjRb != null)
+                            {
+                                grabbedObjRb.isKinematic = true;
+                                grabbedObjRb.velocity = Vector3.zero; // 속도를 초기화
+                                grabbedObjRb.angularVelocity = Vector3.zero; // 회전 속도를 초기화
+                            }
+                            if (grabbedObjCollider != null)
+                            {
+                                grabbedObjCollider.enabled = false; // Collider 비활성화
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("Hit object is not an Item");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Raycast did not hit anything");
                     }
                 }
             }
@@ -84,16 +115,18 @@ public class Grab : MonoBehaviour
 
                 if (grabbedObj != null)
                 {
-                    // 잡은 물건의 원래 부모 복구
+                    // 잡은 물건의 부모를 원래대로 복구
                     grabbedObj.transform.SetParent(grabbedObjOriginalParent);
-                    // 원래 위치와 회전을 복구
-                    grabbedObj.transform.position = grabbedObjOriginalPosition;
-                    grabbedObj.transform.rotation = grabbedObjOriginalRotation;
-                    // 잡은 물건의 Rigidbody를 원래 상태로 되돌림
-                    Rigidbody grabbedRb = grabbedObj.GetComponent<Rigidbody>();
-                    if (grabbedRb != null)
+                    // 잡은 물건의 Rigidbody와 Collider를 원래 상태로 되돌림
+                    if (grabbedObjRb != null)
                     {
-                        grabbedRb.isKinematic = false;
+                        grabbedObjRb.isKinematic = false;
+                        grabbedObjRb.velocity = Vector3.zero; // 속도를 초기화
+                        grabbedObjRb.angularVelocity = Vector3.zero; // 회전 속도를 초기화
+                    }
+                    if (grabbedObjCollider != null)
+                    {
+                        grabbedObjCollider.enabled = true; // Collider 활성화
                     }
                     grabbedObj = null;
                 }
@@ -101,21 +134,27 @@ public class Grab : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if (grabbedObj != null)
         {
-            grabbedObj = collision.transform.parent != null ? collision.transform.parent.gameObject : collision.gameObject;
-            Debug.Log("Item detected: " + grabbedObj.name);
+            grabbedObj.transform.position = holdPoint.position;
+            grabbedObj.transform.rotation = holdPoint.rotation;
+
+            Vector3 holdDirection = holdPoint.forward;
+            Vector3 originalDirection = holdPoint.up; // holdPoint의 원래 방향
+            Quaternion holdRotation = Quaternion.FromToRotation(originalDirection, holdDirection) * grabbedObjOriginalRotation;
+            grabbedObj.transform.rotation = holdRotation;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    // 물건을 감지하는 콜라이더를 사용하는 대신 직접 레이캐스트로 감지
+    private void OnDrawGizmos()
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if (grabPoint != null)
         {
-            Debug.Log("Item exited: " + collision.gameObject.name);
-            grabbedObj = null;
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(grabPoint.position, grabPoint.position + grabPoint.forward * grabRange);
         }
     }
 

@@ -29,7 +29,7 @@ public class newcontrol : MonoBehaviour
     
 
     GameObject nearObject;
-
+    public float rotationSpeed;
 
     private void FixedUpdate()
     {
@@ -42,6 +42,7 @@ public class newcontrol : MonoBehaviour
                 anim.SetBool("isRun", true);
 
                 hip.AddForce(Vector3.forward * speed * 1.5f);
+                
             }
             else
             {
@@ -49,6 +50,7 @@ public class newcontrol : MonoBehaviour
                 anim.SetBool("isRun", false);
 
                 hip.AddForce(Vector3.forward * speed);
+                
             }
         }
         else
@@ -62,6 +64,7 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isSideLeft", true);
             hip.AddForce(-Vector3.right * strafeSpeed);
+            
         }
         else
         {
@@ -73,6 +76,7 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isWalk", true);
             hip.AddForce(-Vector3.forward * speed);
+            
         }
         else if (!Input.GetKey(KeyCode.W))
         {
@@ -84,6 +88,7 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isSideRight", true);
             hip.AddForce(Vector3.right * strafeSpeed);
+            
         }
         else
         {
@@ -161,6 +166,7 @@ public class newcontrol : MonoBehaviour
         {
             ThrowDagger();
         }
+        
     }
 
     void AttachWeapon(Transform weaponTransform)
@@ -287,6 +293,7 @@ public class newcontrol : MonoBehaviour
     {
         
     }
+   
 
     private void OnCollisionEnter(Collision collision)
     {
