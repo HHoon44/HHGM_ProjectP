@@ -15,12 +15,48 @@ public class ScoreManagerB : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Item")
+        if (collision.gameObject.tag == "Item")
         {
+
             Debug.Log("아이템 충돌감지");
-            ScoreB += 1;           
-            Destroy(collision.gameObject);
- 
+
+            // Destroy(collision.gameObject);
+
+            if (collision.gameObject.name == "Large_Score")
+            {
+                ScoreB += 3;
+            }
+            else if (collision.gameObject.name == "Middle_Score")
+            {
+                ScoreB += 2;
+            }
+            else
+            {
+                ScoreB += 1;
+            }
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Item")
+        {
+
+            Debug.Log("아이템 충돌감지");
+
+            // Destroy(collision.gameObject);
+
+            if (collision.gameObject.name == "Large_Score")
+            {
+                ScoreB -= 3;
+            }
+            else if (collision.gameObject.name == "Middle_Score")
+            {
+                ScoreB -= 2;
+            }
+            else
+            {
+                ScoreB -= 1;
+            }
         }
     }
 }

@@ -24,15 +24,13 @@ public class newcontrol : MonoBehaviour
 
     public float HP = 100;
 
-
-    
-    
-
     GameObject nearObject;
     public float rotationSpeed;
 
     private void FixedUpdate()
     {
+        Vector3 movementDirection = Vector3.zero;
+
         // Forward Move
         if (Input.GetKey(KeyCode.W) && (faint == false))
         {
@@ -40,17 +38,15 @@ public class newcontrol : MonoBehaviour
             {
                 anim.SetBool("isWalk", true);
                 anim.SetBool("isRun", true);
-
                 hip.AddForce(Vector3.forward * speed * 1.5f);
-                
+                movementDirection += Vector3.forward;
             }
             else
             {
                 anim.SetBool("isWalk", true);
                 anim.SetBool("isRun", false);
-
                 hip.AddForce(Vector3.forward * speed);
-                
+                movementDirection += Vector3.forward;
             }
         }
         else
@@ -64,7 +60,7 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isSideLeft", true);
             hip.AddForce(-Vector3.right * strafeSpeed);
-            
+            movementDirection -= Vector3.right;
         }
         else
         {
@@ -76,7 +72,7 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isWalk", true);
             hip.AddForce(-Vector3.forward * speed);
-            
+            movementDirection -= Vector3.forward;
         }
         else if (!Input.GetKey(KeyCode.W))
         {
@@ -88,7 +84,7 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isSideRight", true);
             hip.AddForce(Vector3.right * strafeSpeed);
-            
+            movementDirection += Vector3.right;
         }
         else
         {
@@ -105,13 +101,11 @@ public class newcontrol : MonoBehaviour
         {
             anim.SetBool("isFilpkick", true);
             hip.AddForce(Vector3.forward * speed * 5f);
-
         }
         else
         {
             anim.SetBool("isFilpkick", false);
         }
-     
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -155,8 +149,6 @@ public class newcontrol : MonoBehaviour
             }
         }
 
-
-
         if (attachedWeapon != null && attachedWeapon.gameObject.name == "Bomb" && Input.GetMouseButtonDown(1)) // 폭탄이 장착되어 있고 우클릭을 눌렀을 때
         {
             ThrowBomb();
@@ -166,7 +158,13 @@ public class newcontrol : MonoBehaviour
         {
             ThrowDagger();
         }
-        
+
+        // If there's any movement, rotate the player to face the direction of movement
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            player.rotation = Quaternion.RotateTowards(player.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     void AttachWeapon(Transform weaponTransform)
@@ -230,8 +228,6 @@ public class newcontrol : MonoBehaviour
         }
     }
 
-
-
     void ThrowBomb()
     {
         // 폭탄을 생성하고 throwPoint 위치에 던집니다.
@@ -285,15 +281,11 @@ public class newcontrol : MonoBehaviour
     private void gijal()
     {
         faint = true;
-
-        
     }
 
     private void getup()
     {
-        
     }
-   
 
     private void OnCollisionEnter(Collision collision)
     {
