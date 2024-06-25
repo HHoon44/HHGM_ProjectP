@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Timeset(15.0f)); // 타이머 시작
+        StartCoroutine(Timeset(360.0f)); // 타이머 시작
     }
 
     void Update()

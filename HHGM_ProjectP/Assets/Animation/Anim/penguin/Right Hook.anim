@@ -33963,15 +33963,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.3
-    functionName: DealDamageR
+  - time: 0
+    functionName: EnableRightPunchCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
-    functionName: DealDamageR
+  - time: 1.1
+    functionName: DisableRightPunchCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

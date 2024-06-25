@@ -18,6 +18,16 @@ public class Grab : MonoBehaviour
     public Transform grabPoint; // 레이캐스트를 발사할 위치
     public Transform holdPoint; // 물체를 잡을 위치
     public Quaternion grabbedObjOriginalRotation;
+    public Collider rightPunchCollider; // 오른손 펀치에 사용될 콜라이더
+    public Collider leftPunchCollider; // 왼손 펀치에 사용될 콜라이더
+
+    private newcontrol playerControl; // PlayerMovement 스크립트 참조
+
+    private void Start()
+    {
+        // PlayerMovement 스크립트 찾기
+        playerControl = FindObjectOfType<newcontrol>();
+    }
 
     private void Update()
     {
@@ -63,6 +73,9 @@ public class Grab : MonoBehaviour
                             {
                                 grabbedObjCollider.enabled = false; // Collider 비활성화
                             }
+
+                            // 이동 속도 조절
+                            AdjustPlayerSpeed(grabbedObj.name);
                         }
                         else
                         {
@@ -86,7 +99,7 @@ public class Grab : MonoBehaviour
                 anim.SetBool("isRightPunch", true);
                 anim.SetBool("isLeftPunch", false); // 왼손 펀치 애니메이션 비활성화
                 PunchCount = 1;
-                Punching();
+                StartCoroutine(EnablePunchColliderTemporarily(rightPunchCollider, 0.5f)); // 예시로 0.5초동안 활성화
             }
             else if (PunchCount == 1)
             {
@@ -94,7 +107,7 @@ public class Grab : MonoBehaviour
                 anim.SetBool("isRightPunch", false); // 오른손 펀치 애니메이션 비활성화
                 anim.SetBool("isLeftPunch", true);
                 PunchCount = 0;
-                Punching();
+                StartCoroutine(EnablePunchColliderTemporarily(leftPunchCollider, 0.5f)); // 예시로 0.5초동안 활성화
             }
         }
 
@@ -129,6 +142,9 @@ public class Grab : MonoBehaviour
                         grabbedObjCollider.enabled = true; // Collider 활성화
                     }
                     grabbedObj = null;
+
+                    // 이동 속도 원래대로 복구
+                    playerControl.AdjustSpeed(1f, 1f);
                 }
             }
         }
@@ -158,8 +174,45 @@ public class Grab : MonoBehaviour
         }
     }
 
-    private void Punching()
+    private IEnumerator EnablePunchColliderTemporarily(Collider punchCollider, float duration)
     {
-        // 펀치 로직 구현
+        if (punchCollider != null)
+        {
+            punchCollider.enabled = true;
+            Debug.Log(punchCollider.name + " 콜라이더 켜짐");
+            yield return new WaitForSeconds(duration);
+            punchCollider.enabled = false;
+            Debug.Log(punchCollider.name + " 콜라이더 꺼짐");
+        }
+    }
+
+    private void DisablePunchCollider()
+    {
+        if (rightPunchCollider != null)
+        {
+            rightPunchCollider.enabled = false;
+            Debug.Log("오른손 콜라이더 꺼짐");
+        }
+        if (leftPunchCollider != null)
+        {
+            leftPunchCollider.enabled = false;
+            Debug.Log("왼손 콜라이더 꺼짐");
+        }
+    }
+
+    private void AdjustPlayerSpeed(string itemName)
+    {
+        if (itemName.Contains("Large_Score"))
+        {
+            playerControl.AdjustSpeed(0.8f, 0.8f); // 속도를 절반으로 줄임
+        }
+        else if (itemName.Contains("Middle_Score"))
+        {
+            playerControl.AdjustSpeed(0.9f, 0.9f); // 속도를 80%로 줄임
+        }
+        else
+        {
+            playerControl.AdjustSpeed(1f, 1f); // 기본 속도
+        }
     }
 }

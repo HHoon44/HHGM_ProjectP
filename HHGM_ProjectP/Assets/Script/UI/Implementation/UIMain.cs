@@ -7,7 +7,7 @@ namespace ProejctP.UI
     {
         public void StatBtnFun()
         {
-            SceneManager.LoadScene("FirstLoading");
+            SceneManager.LoadScene("Ingame");
         }
     }
 }

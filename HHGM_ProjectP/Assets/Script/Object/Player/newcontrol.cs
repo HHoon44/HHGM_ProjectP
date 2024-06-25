@@ -27,6 +27,16 @@ public class newcontrol : MonoBehaviour
     GameObject nearObject;
     public float rotationSpeed;
 
+    private float originalSpeed;
+    private float originalStrafeSpeed;
+
+    private void Start()
+    {
+        // 원래 속도를 저장
+        originalSpeed = speed;
+        originalStrafeSpeed = strafeSpeed;
+    }
+
     private void FixedUpdate()
     {
         Vector3 movementDirection = Vector3.zero;
@@ -165,6 +175,12 @@ public class newcontrol : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             player.rotation = Quaternion.RotateTowards(player.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    public void AdjustSpeed(float speedMultiplier, float strafeSpeedMultiplier)
+    {
+        speed = originalSpeed * speedMultiplier;
+        strafeSpeed = originalStrafeSpeed * strafeSpeedMultiplier;
     }
 
     void AttachWeapon(Transform weaponTransform)
