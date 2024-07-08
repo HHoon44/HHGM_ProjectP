@@ -6,6 +6,7 @@ using UnityEngine;
 public class newcontrol : MonoBehaviour
 {
     public GameObject[] weapons;
+    public GameObject bulletPrefab; // 총알 프리팹
 
     public Transform weaponSocket;
     public Transform player;
@@ -163,10 +164,17 @@ public class newcontrol : MonoBehaviour
         {
             ThrowBomb();
         }
-        // 추가할 부분: "Dagger" 우클릭 감지 로직
-        if (attachedWeapon != null && attachedWeapon.gameObject.name == "Dagger" && Input.GetMouseButtonDown(1)) // 단검이 장착되어 있고 우클릭을 눌렀을 때
+
+        // 단검 우클릭 감지 로직
+        if (attachedWeapon != null && attachedWeapon.gameObject.name == "Dagger" && Input.GetMouseButtonDown(1))
         {
             ThrowDagger();
+        }
+
+        // 샷건 우클릭 감지 로직
+        if (attachedWeapon != null && attachedWeapon.gameObject.name.Contains("Shotgun") && Input.GetMouseButtonDown(1))
+        {
+            FireShotgun();
         }
 
         // If there's any movement, rotate the player to face the direction of movement
@@ -279,6 +287,41 @@ public class newcontrol : MonoBehaviour
         // 현재 장착된 단검을 제거합니다.
         Destroy(attachedWeapon.gameObject);
         attachedWeapon = null;
+    }
+
+    // 샷건 발사 메서드
+    void FireShotgun()
+    {
+        if (bulletPrefab == null)
+        {
+            Debug.LogError("Bullet Prefab is not assigned!");
+            return;
+        }
+
+        int bulletCount = 10; // 샷건에서 발사할 총알의 개수
+        float spreadAngle = 20f; // 총알의 퍼짐 각도
+
+        for (int i = 0; i < bulletCount; i++)
+        {
+            // 총알 생성
+            GameObject bullet = Instantiate(bulletPrefab, weaponSocket.position, Quaternion.identity);
+            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+
+            // 총알이 날아갈 방향을 퍼짐 각도 내에서 랜덤하게 설정
+            Vector3 direction = player.forward;
+            direction = Quaternion.Euler(UnityEngine.Random.Range(-spreadAngle, spreadAngle), UnityEngine.Random.Range(-spreadAngle, spreadAngle), 0) * direction;
+
+            // 총알의 힘 설정
+            if (bulletRb != null)
+            {
+                bulletRb.isKinematic = false;
+                bulletRb.detectCollisions = true;
+                bulletRb.AddForce(direction * 20f, ForceMode.Impulse); // 총알의 속도 설정
+            }
+
+            // 일정 시간 후에 총알을 파괴
+            Destroy(bullet, 2f);
+        }
     }
 
     // 추가할 메서드: AutoExplodeBomb
