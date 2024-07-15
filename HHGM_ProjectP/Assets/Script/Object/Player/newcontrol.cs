@@ -9,6 +9,7 @@ public class newcontrol : MonoBehaviour
     public GameObject bulletPrefab; // 총알 프리팹
 
     public Transform weaponSocket;
+    public Transform shotSpawnPoint; // 샷건 발사 위치를 위한 새로운 Transform
     public Transform player;
     private Transform attachedWeapon;
 
@@ -30,6 +31,8 @@ public class newcontrol : MonoBehaviour
 
     private float originalSpeed;
     private float originalStrafeSpeed;
+
+    private int shotgunShots = 0; // 샷건 발사 횟수를 추적
 
     private void Start()
     {
@@ -220,6 +223,12 @@ public class newcontrol : MonoBehaviour
         {
             Invoke("AutoExplodeBomb", 4f);
         }
+
+        // 샷건일 경우 발사 횟수를 초기화
+        if (attachedWeapon.gameObject.name.Contains("Shotgun"))
+        {
+            shotgunShots = 0;
+        }
     }
 
     void DetachWeapon()
@@ -304,7 +313,7 @@ public class newcontrol : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             // 총알 생성
-            GameObject bullet = Instantiate(bulletPrefab, weaponSocket.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, shotSpawnPoint.position, Quaternion.identity); // shotSpawnPoint 위치에서 총알 생성
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
 
             // 총알이 날아갈 방향을 퍼짐 각도 내에서 랜덤하게 설정
@@ -316,11 +325,21 @@ public class newcontrol : MonoBehaviour
             {
                 bulletRb.isKinematic = false;
                 bulletRb.detectCollisions = true;
-                bulletRb.AddForce(direction * 20f, ForceMode.Impulse); // 총알의 속도 설정
+                bulletRb.AddForce(direction * 30f, ForceMode.Impulse); // 총알의 속도 설정
             }
 
             // 일정 시간 후에 총알을 파괴
             Destroy(bullet, 2f);
+        }
+
+        // 샷건 발사 횟수 증가
+        shotgunShots++;
+
+        // 샷건을 3번 발사하면 제거
+        if (shotgunShots >= 3)
+        {
+            Destroy(attachedWeapon.gameObject);
+            attachedWeapon = null;
         }
     }
 
