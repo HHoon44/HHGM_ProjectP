@@ -31,6 +31,11 @@ public class ondamage : MonoBehaviour
             curhealth -= 50;
             StartCoroutine(Damage());
         }
+        if (other.tag == "bullet")
+        {
+            curhealth -= 15;
+            StartCoroutine(Damage());
+        }
     }
 
     IEnumerator Damage() {
